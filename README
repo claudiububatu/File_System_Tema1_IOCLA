@@ -1,0 +1,87 @@
+@COPYRIGHT 2021 Bubatu Claudiu-Mihai, 313CA
+-------------------------------------------------------------------------------
+
+Fiecare comanda(touch, mkdir, ls, rm, rmdir, cd, pwd, tree, mv, stop) este
+reprezentata de o functie. Pentru a realiza aceste functii am utilizat si
+alte functii auxiliare pe care le voi prezenta in ordine.
+
+- createdir este o functie in care aloc spatiu pentru o structura de tip Dir
+si pentru numele acesteia;
+
+- createfile este o functie in care aloc spatiu pentru o structura de tip File
+si pentru numele acesteia;
+
+- touch este o functie care creeaza un fisier intr-un director;
+pentru acest lucru am folosit functia createfile pentru a aloca
+memorie fisierului proaspat adaugat;
+
+- mkdir este o functie care creeaza un director intr-un fisier; pentru acest
+lucru am folosit functia createdir pentru a aloca memorie fisierului proaspat
+adaugat;
+
+- ls este o functie ce afiseaza mai intai directoarele, apoi fisierele dintr-un
+director parinte;
+
+- rm este o functie care sterge un fisier dintr-o lista;
+aceasta curprinde 2 cazuri:
+ *cand dorim sa stergem de pe prima pozitie din lista
+ *orice alt caz
+
+- rm_files este o functie care sterge toate fisierele dintr-un director;
+aceasta realizeaza stergeri repetate ale fisierelor de pe prima pozitie
+din directorul parinte
+
+- make_null seteaza toate legaturile unui director pe NULL
+
+- rmv este o functie recursiva ce sterge toate directoarele si tot ce se
+afla in ele pe directiile ->next si ->head_children_files;
+
+- rmdir este o functie in care sterg mai intai toate subdirectoarele
+directorului pe care vreau sa il sterg si tot ce se afla in ele;
+dupa aceea eliberez toate fisierele din directorul care se doreste
+a fi sters, urmand a sterge inclusiv directorul;
+
+- cd este o functie ce realizeaza accesarea directoarelor-copii, dar si
+a directoarelor-parinti (cd ..)
+
+- pwd este o functie care afiseaza calea pe care se afla un director; in
+aceasta functie am construit mai intai calea inversata fata de cum ar trebui
+sa fie si am realizat un algoritm in care am inversat aceasta cale "pe dos";
+
+- shw_files este o functie recursiva ce afiseaza toate fisierele pe nivel;
+
+- tree este o functie recursiva ce afiseaza toate directoarele pe nivel;
+aici apelam functia shw_files pentru a afisa intr-un mod corespunzator
+toate directoarele si fisierele din directorul target
+
+- err este o functie care verifica daca se gaseste un fisier/director
+cu numele dat ca parametru functiei in directorul parinte;
+
+- mv_remove_file este o functie ce sterge fisierul cu numele dat ca
+parametru functiei
+
+- mv_add_file este o functie ce adauga la sfarsitul listei de fisiere un
+nou fisier
+
+- mv_remove_dir este o functie ce sterge directorul cu numele dat ca
+parametru functiei
+
+- mv_add_dir este o functie ce adauga la sfarsitul listei de directoare un
+nou director
+
+- ok_file este o functie care confirma ca operatia de mv se va face asupra
+unui fisier
+
+- ok_dir este o functie care confirma ca operatia de mv se va face asupra
+unui director
+
+- mv este o functie care sterge un fisier/director din directorul parinte
+si il adauga la sfarsitul listei de fisiere/directoare; aceasta functie
+utilizeaza functiile auxiliare: err, mv_remove_file, mv_add_file,
+mv_remove_dir, mv_add_dir, ok_file, ok_dir.
+
+- stop este o functie care opreste programul din functiune si elibereaza
+memoria; aceasta elibereaza mai intai fisierele din home, urmand a sterge
+si directoarele din acesta.
+
+- functia main implementeaza toate functiile prezentate mai sus;
